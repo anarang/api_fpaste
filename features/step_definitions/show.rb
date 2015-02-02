@@ -5,7 +5,8 @@ end
 
 Then(/^the response should be (\d+) OK$/) do |arg1|
   if @var.code == 200
-	true
+  	puts "Status: OK"
+	
   else
  	raise 'API Server not found'
   end
@@ -13,12 +14,12 @@ end
 
 Then(/^I should be able to get details including Author and data$/) do
   @api_response = JSON.parse(@var.body)["result"]
-  puts @api_response
   author = @api_response["author"]
+  puts "Author: " + author
   data = @api_response["data"]
-
+  puts "Data: " + data
   if author == "Anisha" and data == "hello API"
-    puts "Status: OK"
+    true
   else
     raise 'Incorrect results'
   end
